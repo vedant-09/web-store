@@ -74,7 +74,7 @@ Make sure your backend (e.g., port `5000`) and frontend (port `3000`) are runnin
 
 ## 📦 Tech Stack
 
-- **Frontend:** React, Axios, Bootstrap/Tailwind (optional)
+- **Frontend:** React, Axios, Bootstrap
 - **Backend:** Node.js, Express
 - **Database:** MySQL / MongoDB
 - **Other Tools:** Git, npm, dotenv
