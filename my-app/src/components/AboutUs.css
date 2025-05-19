@@ -1,0 +1,29 @@
+.about-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('D:\my react\my-app\public\Images\img-about.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: rgb(237, 228, 228);
+  }
+  
+  .team-member-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .social-links a {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .social-links a:hover {
+    color: #007bff;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .team-member-image {
+      width: 120px;
+      height: 120px;
+    }
+  }

@@ -1,0 +1,107 @@
+1.Electronics
+    Smartphones
+    Laptops
+    Tablets
+    Cameras
+    Smartwatches
+    Headphones
+    Speakers
+
+2. Home Appliances
+    Refrigerators
+    Washing Machines
+    Air Conditioners
+    Microwaves
+    Vacuum Cleaners
+
+3.Fashion
+    Men's Clothing
+    Women's Clothing
+    Footwear
+    Accessories
+
+4.Beauty & Personal Care
+    Skincare
+    Haircare
+    Makeup
+    Fragrances
+
+5.Furniture
+    Sofas
+    Beds
+    Tables & Chairs
+    Wardrobes
+
+6.Sports & Fitness
+    Gym Equipment
+    Sportswear
+    Yoga Mats
+    Bicycles
+
+
+
+SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'myshop' AND REFERENCED_TABLE_NAME = 'products';
+output
+TABLE_NAME      COLUMN_NAME     CONSTRAINT_NAME
+product_details product_id      product_details_ibfk_1
+
+
+SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'myshop' AND REFERENCED_TABLE_NAME = 'subcategories';
+TABLE_NAME  COLUMN_NAME      CONSTRAINT_NAME
+products    subcategory_id   products_ibfk_2
+
+SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'myshop' AND REFERENCED_TABLE_NAME = 'categories';
+TABLE_NAME      COLUMN_NAME   CONSTRAINT_NAME
+products        category_id   products_ibfk_1
+subcategories   category_id   subcategories_ibfk_1
+
+
+
+
+CREATE TABLE product_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+Table Hierarchy
+categories
+ ├── subcategories (FK: category_id → categories.id)
+ │    └── products (FK: subcategory_id → subcategories.id)
+ │         ├── product_details (FK: product_id → products.id)
+ │         └── product_images (FK: product_id → products.id)
+ │
+ ├── products (FK: category_id → categories.id)
+      ├── product_details (FK: product_id → products.id)
+      └── product_images (FK: product_id → products.id)
+
+
+
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product_details(id) ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    status ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product_details(id) ON DELETE CASCADE
+);

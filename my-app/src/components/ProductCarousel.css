@@ -1,0 +1,170 @@
+/* General Styles */
+#new-arrival {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+  
+  /* Container */
+  #new-arrival .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 15px;
+  }
+  
+  /* Section Heading */
+  #new-arrival h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  #new-arrival .btn-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 600;
+  }
+  
+  /* Swiper Styles */
+  .swiper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+  }
+  
+  .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeUp 0.8s ease-in-out forwards;
+    flex-shrink: 0;
+    height: 100%;
+    scroll-snap-align: start;
+    cursor: pointer;
+  }
+  
+  .swiper-slide:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Enable swipe on card click */
+  .swiper-slide:active {
+    scroll-behavior: auto;
+  }
+  
+  .swiper-slide:focus {
+    outline: none;
+  }
+  
+  .swiper-slide:active ~ .swiper-wrapper {
+    scroll-behavior: smooth;
+  }
+  
+  /* Fade Up Animation */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Product Item */
+  .product-item {
+    width: 100%;
+    max-width: 338px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .product-image {
+    border-radius: 8px;
+    transition: transform 0.3s;
+    object-fit: contain;
+    height: 200px;
+    width: 100%;
+  }
+  
+  .product-image:hover {
+    transform: scale(1.1);
+  }
+  
+  .product-content {
+    padding: 15px 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .product-content h5 {
+    margin-top: auto;
+  }
+  
+  .product-content h5 a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Swiper Arrows */
+  .icon-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .icon-arrow-left {
+    left: 10px;
+  }
+  
+  .icon-arrow-right {
+    right: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .swiper-slide {
+      width: 300px;
+      margin-right: 15px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .swiper-slide {
+      width: 80%;
+      flex: 0 0 auto;
+    }
+  
+    .icon-arrow {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    #new-arrival h4 {
+      font-size: 18px;
+    }
+  }

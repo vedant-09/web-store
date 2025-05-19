@@ -1,0 +1,205 @@
+/* carousel.css */
+
+/* Overall Carousel Container */
+#carouselExampleInterval {
+    /* Optional: Make the carousel take up more vertical space.
+       Consider the context of your page. */
+    /* min-height: 70vh; */
+    /* max-height: 90vh; */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border-radius: 8px; /* Optional: rounded corners for the whole carousel */
+    overflow: hidden; /* Ensures content stays within rounded corners */
+  }
+  
+  /* Carousel Inner Wrapper */
+  .carousel-inner {
+    border-radius: 8px; /* Match parent if carousel has rounded corners */
+  }
+  
+  /* Carousel Items */
+  .carousel-item {
+    /* Ensures images don't cause jarring height changes if aspect ratios differ slightly */
+    /* You might need to adjust this based on your images */
+    /* min-height: 400px;  Example minimum height */
+    background-color: #f8f9fa; /* Fallback color if images are loading */
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease; /* Smoother transition */
+  }
+  
+  /* Styling for images within carousel items */
+  .carousel-item img {
+    width: 100%;
+    /* height: 100%; */ /* Can be problematic if aspect ratios vary wildly. */
+    object-fit: cover; /* Crucial for making images cover the area nicely */
+    object-position: center; /* Center the image */
+    /* Optional: to match the example of 70vh on the carousel */
+    /* max-height: 90vh;
+    min-height: 70vh; */
+  }
+  
+  /* Make sure the active item is fully opaque if using opacity transitions */
+  .carousel-item.active {
+    opacity: 1;
+  }
+  
+  /* If you use .carousel-fade for crossfade transitions */
+  .carousel-fade .carousel-item {
+    opacity: 0;
+    transition-property: opacity;
+    transform: none; /* Override slide transform */
+  }
+  
+  .carousel-fade .carousel-item.active,
+  .carousel-fade .carousel-item-next.carousel-item-start,
+  .carousel-fade .carousel-item-prev.carousel-item-end {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .carousel-fade .active.carousel-item-start,
+  .carousel-fade .active.carousel-item-end {
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.6s ease; /* Match duration */
+  }
+  
+  
+  /* Carousel Controls (Previous/Next Buttons) */
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    width: 5%; /* Adjust width as needed */
+    border-radius: 50%; /* Circular controls */
+    margin: auto 15px; /* Vertical centering and some horizontal spacing */
+    height: 50px; /* Fixed height */
+    width: 50px;  /* Fixed width for a circle */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+  
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover,
+  .carousel-control-prev:focus,
+  .carousel-control-next:focus {
+    background-color: rgba(0, 0, 0, 0.6); /* Darker on hover/focus */
+    opacity: 1;
+    outline: none; /* Remove default outline if adding custom focus */
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); /* Custom focus ring */
+  }
+  
+  /* Control Icons */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-size: 60%, 60%; /* Make icons a bit smaller within the button */
+    filter: brightness(0) invert(1); /* Ensures icons are white */
+  }
+  
+  /* Carousel Indicators (if you add them in your HTML) */
+  /*
+    Example HTML for indicators:
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+  */
+  .carousel-indicators {
+    bottom: 20px; /* Position them a bit higher from the bottom */
+  }
+  
+  .carousel-indicators [data-bs-target] {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%; /* Circular indicators */
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+  
+  .carousel-indicators .active {
+    background-color: #ffffff; /* Solid white for active indicator */
+    opacity: 1;
+  }
+  
+  .carousel-indicators [data-bs-target]:hover,
+  .carousel-indicators [data-bs-target]:focus {
+    background-color: #ffffff;
+    opacity: 1;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.3); /* Custom focus ring */
+  }
+  
+  /* Carousel Captions (if you add them in your HTML) */
+  /*
+    Example HTML for captions within a .carousel-item:
+    <div class="carousel-caption d-none d-md-block">
+      <h5>First slide label</h5>
+      <p>Some representative placeholder content for the first slide.</p>
+    </div>
+  */
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.65); /* Darker semi-transparent background for readability */
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    bottom: 10%; /* Adjust vertical position */
+    left: 10%;
+    right: 10%;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Text shadow for better legibility */
+  }
+  
+  .carousel-caption h5 {
+    font-size: 1.5rem; /* Larger heading */
+    margin-bottom: 0.75rem;
+  }
+  
+  .carousel-caption p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Responsive adjustments for captions if needed */
+  @media (max-width: 768px) {
+    .carousel-caption {
+      bottom: 5%;
+      left: 5%;
+      right: 5%;
+      padding: 15px;
+    }
+    .carousel-caption h5 {
+      font-size: 1.2rem;
+    }
+    .carousel-caption p {
+      font-size: 0.9rem;
+    }
+  
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* Hide captions on very small screens if they become too obtrusive */
+    /* .carousel-caption {
+      display: none !important;
+    } */
+  }
+  
+  /* Ensure the class 'img-fulid' (which seems to be a typo for 'img-fluid')
+     behaves as Bootstrap's 'img-fluid' if you haven't corrected it.
+     Bootstrap's .img-fluid is:
+     max-width: 100%;
+     height: auto;
+     If you meant to use it, ensure Bootstrap's CSS is loaded
+     or add these properties.
+  */
+  .img-fulid { /* Assuming this was a typo for img-fluid */
+    max-width: 100%;
+    height: auto;
+  }

@@ -1,0 +1,38 @@
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+  }
+  .sidebar .nav-link {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+  }
+  .content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+  .btn-danger {
+    background-color: #dc3545;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .content {
+      margin-left: 0;
+      width: 100%;
+    }
+    .d-flex.flex-column.flex-md-row {
+      flex-direction: column;
+    }
+  }
